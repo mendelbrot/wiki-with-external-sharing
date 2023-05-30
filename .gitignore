@@ -1,1 +1,7 @@
 book
+internal-docs
+external-docs
+
+# artifacts from build.sh - in case the cleanup to delete them fails
+/book.toml
+src/SUMMARY.md

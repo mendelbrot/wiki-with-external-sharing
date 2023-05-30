@@ -1,0 +1,8 @@
+[book]
+authors = ["MistyWest"]
+language = "en"
+multilingual = false
+src = "src"
+title = "MistySOM Internal Docs"
+build-dir = "internal-docs"
+create-missing = false
