@@ -1,7 +1,13 @@
 book
-internal-docs
-external-docs
 
-# artifacts from build.sh - in case the cleanup to delete them fails
+# custon output dirs
+_int_out
+_ext_out
+
+# artifacts from build.sh
 /book.toml
 src/SUMMARY.md
+
+# mdbook build may create html files in src when markdown files 
+# in src are referenced in SUMMARY.md with incorrect path.
+src/**/*.html

@@ -1,8 +1,10 @@
 [book]
-authors = ["MistyWest"]
-language = "en"
-multilingual = false
+title = "External Docs"
+authors = [""]
+description = ""
 src = "src"
-title = "MistySOM Documentation"
-build-dir = "external-docs"
+language = "en"
+
+[build]
+build-dir = "_ext_out"
 create-missing = false

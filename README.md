@@ -1,15 +1,51 @@
-# the MH11 docs repo
+# wiki for internal and external documentation
 
-This repo uses [mdbook](https://rust-lang.github.io/mdBook/) to build the wiki.  
+The wiki is built with [mdbook](https://rust-lang.github.io/mdBook/).  
 
-Our requirement is to have an internal wiki and an external wiki, where items can be selectively included in the external wiki.  To accomplish, we use the feature of mdbook, where it will only include files that are in the table of contents, and a script `build.sh` that copies files so that it will build appropriately for the internal and external docs.  
+The requirement is for an internal wiki and an external wiki, where items can be selectively included in the external wiki.  To accomplish this, we use a feature of mdbook, where it will only include files listed in `SUMMARY.md` in the build.  A script `build.sh` copies files to different directories so that mdbook will build appropriately for the internal and external docs.  
+
 
 ## directory structure
 
-For internal documentation, the table of contents to edit and determine what to include is `intenral-contents/SUMMARY.md`, and the output build is in `internal-docs`.
+```
+├── _ext_out
+│   └── ...
+├── _int_out
+│   └── ...
+├── ext
+│   ├── book.toml 
+│   └── SUMMARY.md
+├── int
+│   ├── book.toml 
+│   └── SUMMARY.md
+├── src
+│   ├── ...
+│   └── SUMMARY.md
+├── .gitignore
+├── book.toml 
+├── build.sh
+└── README.md
+```
 
-For external documentation, the table of contents to edit and determine what to include is `external-contents/SUMMARY.md`, and the output build is in `external-docs`.
+The `ext` folder specifies external documentation and the `int` folder specifies the internal documentation.  Each of these two folders has a `book.toml` and a `SUMMARY.md`.  The `book.toml` specifies info like the title, authors and build output directory.  The `SUMMARY.md` is the table of contents.  Only files referenced in `SUMMARY.md` will be included in the build output, so this is where to specify which files are shared externally.
 
-The the markdown content (for both internal and external) is in `src`.
+The markdown content (for both internal and external) is in `src`.
 
-To build the internal docs, run `bash build.sh in`, and for the internal docs, run `bash build.sh ex`.
+The build output folders are `_ext_out` and `_int_out`.
+
+The files `/book.toml` and `/src/SUMMARY.md`.  are temporary files created as precursors to the build process (they are copied from the `int` or `ext` folder).  They will be over-written.
+
+
+## building and viewing the wiki
+
+To build and view the internal docs, run:
+```
+bash build.sh int
+mdbook serve -o
+```
+
+Likewise, to build and view the external docs, run:
+```
+bash build.sh ext
+mdbook serve -o
+```
