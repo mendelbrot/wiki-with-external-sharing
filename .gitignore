@@ -12,6 +12,9 @@ src/SUMMARY.md
 # in src are referenced in SUMMARY.md with incorrect path.
 src/**/*.html
 
+# terraform authorizer lambda zip
+/authorizer.zip
+
 ## Terraform gitignore
 
 # Local .terraform directories
